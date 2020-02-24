@@ -10,12 +10,12 @@ function loadUpdate() {
 }
 
 function updateOverallLoad() {
-    var test = function() {
+    var callbackF = function() {
         var test = fileinputval[5].split(" ");
         var overall_load = document.getElementById("cpu_overall_load");
         overall_load.innerHTML = test[0] * 100 + "%";
     };
-    getText(test);
+    getText(callbackF);
 }
 
 function updateDetailedNode() {
@@ -49,15 +49,10 @@ function updateDetailedNode() {
 function getText(callBack) {
     var txtFile = new XMLHttpRequest();
     txtFile.open("GET", "http://192.168.0.20/cpu_log", true);
-    // console.log(txtFile.readyState);
-    // console.log(txtFile.status);
     txtFile.onreadystatechange = function() {
         if (txtFile.readyState === 4) {  // Makes sure the document is ready to parse.
             if (txtFile.status === 200) {  // Makes sure it's found the file.
-                // var allText = txtFile.responseText;
-                // var lines = txtFile.responseText.split("\n"); // Will separate each line into an array
                 fileinputval = txtFile.responseText.split("\n")
-                console.log("Suc..?");
                 callBack();
             } else if (txtFile.status === 0) {
                 // File Not found or exception, Fallback!
