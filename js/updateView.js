@@ -1,3 +1,6 @@
+/**
+ * Update General View : Close everything except for General!
+ */
 function showGeneral() {
     // close all Except for general information
     document.getElementById("cpu_real").style.display = "none";
@@ -8,6 +11,9 @@ function showGeneral() {
     document.getElementById("general_review").style.visibility = "visible";
 }
 
+/**
+ * Update CPU Status View : Close everything except for CPU Status!
+ */
 function showCPUStatus() {
     // Close all except for CPU Information
     document.getElementById("general_review").style.display = "none";
