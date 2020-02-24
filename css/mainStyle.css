@@ -1,0 +1,68 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
+/* Table-Related CSS Definition*/
+table {
+    width: 800px;
+    /*margin: 0 auto;*/
+    border: 1px solid #444444;
+    /* 
+       Enabling Border Collapse will collapse border by border.
+       Something like Excel.
+    */
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+td {
+    text-align: center;
+}
+th, td {
+    border: 1px solid #444444;
+}
+
+/* Logo-Related CSS Definition */
+.ImgShowingArea {
+    background-color:#444444;
+    position: relative;
+    height: 80px;
+    width: 100%;
+}
+.ImageSRC {
+    transform: scale(0.35);
+    -webkit-transform-origin-x: 0;
+    -webkit-transform-origin-y: 0;
+}
+
+/* List-Related CSS Definition */
+.ListID {
+    align-self: auto;
+    /* float: left; */
+    left: 0;
+    /*top: -120px;*/
+    background-color: #3f51b5;
+    border-right: 2pt solid #FFFFFF;
+    /* width: 280px; */
+    height: 100%;
+    overflow-y: scroll;
+}
+.CPUStatus{
+    background-color: #b0bec5;
+    /* margin: 0 auto; */
+    text-align: center;
+    /* float: left; */
+    /* width: 850px; */
+    height: 100%;
+    /*border: 5pt groove #3f51b5;*/
+}
+.MainGridWrapper {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    height: calc(100% - 80px);
+}
+
+/* SSH Related CSS Definition */
+.SSHServerBashWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
