@@ -1,11 +1,57 @@
 var fileinputval;
 var boolean;
+var updateAuto;
+
+function changeUpdateRate() {
+    var updateVal = document.getElementById("update_interval");
+    switch(updateVal.value) {
+        case "realtime":
+            // Clear default interval;
+            clearInterval(updateAuto);
+
+            // Set new interval
+            updateAuto = setInterval(loadUpdate, 1000);
+
+            // hide update button
+            var updateButton = document.getElementById("manual_update");
+            updateButton.style.visibility = "hidden";
+            updateButton.style.display = "None";
+        break;
+        case "five_secs":
+            // Clear default interval;
+            clearInterval(updateAuto);
+
+            // Set new interval
+            updateAuto = setInterval(loadUpdate, 5000);
+            var updateButton = document.getElementById("manual_update");
+            updateButton.style.visibility = "hidden";
+            updateButton.style.display = "None";
+        break;
+        case "10_secs":
+            // Clear default interval;
+            clearInterval(updateAuto);
+
+            // Set new interval
+            updateAuto = setInterval(loadUpdate, 10000);
+            var updateButton = document.getElementById("manual_update");
+            updateButton.style.visibility = "hidden";
+            updateButton.style.display = "None";
+        break;
+        case "manual":
+            // Clear default interval;
+            clearInterval(updateAuto);
+            var updateButton = document.getElementById("manual_update");
+            updateButton.style.visibility = "visible";
+            updateButton.style.display = "inline";
+        break;
+    }
+}
 
 /**
  * Update each data when first page load
  */
 function everyFive() {
-    var test = setInterval(loadUpdate, 5000);
+    updateAuto = setInterval(loadUpdate, 5000);
 }
 function loadUpdate() {
     updateOverallLoad();

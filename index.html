@@ -59,7 +59,15 @@
                 </div>
                 <!-- CPU Status Area -->
                 <div id="cpu_real" style="visibility: hidden;">
-                    <h2>Current CPU Status<a href="#update" onclick="updateDetailedNode()">(Update)</a></h2>
+                    <h2>
+                        Current CPU Status<a href="#update" onclick="updateDetailedNode()" id="manual_update" style="display:none;" style="visibility: hidden;">(Update)</a>
+                        <select id="update_interval" onchange=changeUpdateRate()>
+                            <option value="realtime">Realtime(Not a good choice)</option>
+                            <option value="five_secs" selected="selected">Every Five Seconds</option>
+                            <option value="10_secs">Every Ten Seconds</option>
+                            <option value="manual">Manual</option>
+                        </select>
+                    </h2>
                     <table>
                         <tr>
                             <th>CPU ID</th>
