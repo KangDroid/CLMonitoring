@@ -4,6 +4,9 @@ var boolean;
 /**
  * Update each data when first page load
  */
+function everyFive() {
+    var test = setInterval(loadUpdate, 5000);
+}
 function loadUpdate() {
     updateOverallLoad();
     updateDetailedNode();
