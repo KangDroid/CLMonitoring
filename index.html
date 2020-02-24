@@ -1,0 +1,189 @@
+<!-- TODO: Width Fill -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- CSS -->
+        <style>
+            html, body {
+                margin: 0;
+                height: 100%;
+            }
+            /* Table-Related CSS Definition*/
+            table {
+                width: 800px;
+                /*margin: 0 auto;*/
+                border: 1px solid #444444;
+                /* 
+                   Enabling Border Collapse will collapse border by border.
+                   Something like Excel.
+                */
+                border-collapse: collapse;
+                margin: 0 auto;
+            }
+            td {
+                text-align: center;
+            }
+            th, td {
+                border: 1px solid #444444;
+            }
+
+            /* Logo-Related CSS Definition */
+            .ImgShowingArea {
+                background-color:#444444;
+                position: relative;
+                height: 80px;
+                width: 100%;
+            }
+            .ImageSRC {
+                transform: scale(0.35);
+                -webkit-transform-origin-x: 0;
+                -webkit-transform-origin-y: 0;
+            }
+
+            /* List-Related CSS Definition */
+            .ListID {
+                align-self: auto;
+                /* float: left; */
+                left: 0;
+                /*top: -120px;*/
+                background-color: #3f51b5;
+                border-right: 2pt solid #FFFFFF;
+                /* width: 280px; */
+                height: 100%;
+                overflow-y: scroll;
+            }
+            .CPUStatus{
+                background-color: #b0bec5;
+                /* margin: 0 auto; */
+                text-align: center;
+                /* float: left; */
+                /* width: 850px; */
+                height: 100%;
+                /*border: 5pt groove #3f51b5;*/
+            }
+            .MainGridWrapper {
+                display: grid;
+                grid-template-columns: 300px 1fr;
+                height: calc(100% - 80px);
+            }
+
+            /* SSH Related CSS Definition */
+            .SSHServerBashWrapper {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+        </style>
+
+        <!-- Default Charset -->
+        <meta charset="UTF-8">
+
+        <!-- WebSite Information -->
+        <title>KangDroid Test Website!</title>
+
+        <!-- Javascript to update CPU Frequency Data -->
+        <script type="text/javascript" src="js/updateData.js"></script>
+
+        <!-- Javascript to update View -->
+        <script>
+            function showGeneral() {
+                // close all Except for general information
+                document.getElementById("cpu_real").style.display = "none";
+                document.getElementById("cpu_real").style.visibility = "hidden";
+
+                // Show General Information
+                document.getElementById("general_review").style.display = "inline";
+                document.getElementById("general_review").style.visibility = "visible";
+            }
+
+            function showCPUStatus() {
+                // Close all except for CPU Information
+                document.getElementById("general_review").style.display = "none";
+                document.getElementById("general_review").style.visibility = "hidden";
+
+                // Show this
+                document.getElementById("cpu_real").style.display = "inline";
+                document.getElementById("cpu_real").style.visibility = "visible";
+            }
+        </script>
+    </head>
+    <body onload=loadUpdate()>
+
+        <!-- Logo Showing Area -->
+        <div class="ImgShowingArea">
+            <a href="http://localhost"><img src="images/logo.png" class="ImageSRC"></a>
+        </div>
+
+        <!-- Grid View Area - Wrapper -->
+        <div class="MainGridWrapper">
+            <!-- List Area -->
+            <div class="ListID">
+                <ul>
+                    <li style="color: #ffffff">
+                        <a href="#gen_status" onclick="showGeneral()" style="color: #ffffff">General Status</a>
+                    </li>
+                    <li style="color: #ffffff"><a href="#node_cpu_status" onclick="showCPUStatus()" style="color: #ffffff">Detailed Node's System Health</a></li>
+                    <li style="color: #ffffff"><a href="webconsole.php" style="color: #ffffff" target="_blank">Send SHELL Command<br>(Linux)</a></li>
+                </ul>
+            </div>
+
+            <!-- View Container -->
+            <div class="CPUStatus" id="identf_cpu">
+
+                <!-- General Area -->
+                <div id="general_review">
+                    <h2>General Node Status</h2>
+                    <table>
+                        <tr>
+                            <th>Node Identifier</th>
+                            <th>Node Name</th>
+                            <th>Node Power Status</th>
+                            <th>Node Overall Load(%)</th>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>RPI #1</td>
+                            <td>ON</td>
+                            <td id="cpu_overall_load">78%</td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- CPU Status Area -->
+                <div id="cpu_real" style="visibility: hidden;">
+                    <h2>Current CPU Status<a href="#update" onclick="updateDetailedNode()">(Update)</a></h2>
+                    <table>
+                        <tr>
+                            <th>CPU ID</th>
+                            <th>CPU Online Status</th>
+                            <th>CPU Frequency</th>
+                            <th>Load</th>
+                        </tr>
+                        <tr>
+                            <td id="cpu_id_0">0</td>
+                            <td id="cpu_online_0">true</td>
+                            <td id="cpu_frequency_0">1.24Ghz</td>
+                            <td id="cpu_load_0"></td>
+                        </tr>
+                        <tr>
+                            <td id="cpu_id_1">1</td>
+                            <td id="cpu_online_1">true</td>
+                            <td id="cpu_frequency_1">1.24Ghz</td>
+                            <td id="cpu_load_1"></td>
+                        </tr>
+                        <tr>
+                            <td id="cpu_id_2">2</td>
+                            <td id="cpu_online_2">true</td>
+                            <td id="cpu_frequency_2">1.24Ghz</td>
+                            <td id="cpu_load_2"></td>
+                        </tr>
+                        <tr>
+                            <td id="cpu_id_3">3</td>
+                            <td id="cpu_online_3">true</td>
+                            <td id="cpu_frequency_3">1.24Ghz</td>
+                            <td id="cpu_load_3"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
