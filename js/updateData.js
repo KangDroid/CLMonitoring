@@ -84,6 +84,7 @@ function updateDetailedNode() {
             cpu_frequency.innerHTML = fileinputval[i] + "Ghz";
         }
     }
+    getText(callbackFunction);
 }
 
 /**
