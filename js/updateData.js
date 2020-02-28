@@ -51,6 +51,8 @@ function changeUpdateRate() {
  * Update each data when first page load
  */
 function everyFive() {
+    // First update;
+    loadUpdate();
     updateAuto = setInterval(loadUpdate, 5000);
 }
 function loadUpdate() {
@@ -81,13 +83,6 @@ function updateDetailedNode() {
             var cpu_frequency = document.getElementById("cpu_frequency_" + i);
             cpu_frequency.innerHTML = fileinputval[i] + "Ghz";
         }
-    }
-
-    if (boolean == false) {
-        // do nothing
-        alert("Node Monitoring Service is not running or present.");
-    } else {
-        getText(callbackFunction);
     }
 }
 
