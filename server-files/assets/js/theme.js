@@ -3,14 +3,20 @@
 
   // Toggle the side navigation
   $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
-    // Custom Logo should be closed - and re-opened.
-    $('#logo_png').show();
+    // Custom Logo should be resized IF icon set
+    $('#logo_png').attr("src", "avatars/logo.png");
+    $('#logo_png').css("max-width", "192px");
+    $('#logo_png').css("max-height", "100px");
+      
     $("body").toggleClass("sidebar-toggled");
     $(".sidebar").toggleClass("toggled");
     if ($(".sidebar").hasClass("toggled")) {
       $('.sidebar .collapse').collapse('hide');
       // Custom Logo should be closed - and re-opened.
-      $('#logo_png').hide();
+      // Show New Logo when hided
+      $('#logo_png').attr("src", "avatars/icon.png");
+      $('#logo_png').css("max-width", "55px");
+      $('#logo_png').css("max-height", "55px");
     };
   });
 
