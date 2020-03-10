@@ -24,6 +24,13 @@
   $(window).resize(function() {
     if ($(window).width() < 768) {
       $('.sidebar .collapse').collapse('hide');
+      $('#logo_png').attr("src", "avatars/icon.png");
+      $('#logo_png').css("max-width", "55px");
+      $('#logo_png').css("max-height", "55px");
+    } else {
+      $('#logo_png').attr("src", "avatars/logo.png");
+      $('#logo_png').css("max-width", "192px");
+      $('#logo_png').css("max-height", "100px");
     };
   });
 
