@@ -33,7 +33,28 @@
       $('#logo_png').css("max-height", "100px");
     };
   });
+    
+// Updating Graph
 
+/*    
+$(function(){
+            
+    let chart = document.querySelector('canvas').chart;
+    
+    $(document).on('click', function(){
+        
+        // When the document is clicked, update the chart 
+        // with a random value and animate it.
+        
+        //chart.data.datasets[0].data[9] = Math.random()*50000;
+        console.log(chart.data.datasets[0]);
+        removeData(chart);
+        chart.update();
+    });
+    
+});
+*/
+    
   // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
   $('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function(e) {
     if ($(window).width() > 768) {

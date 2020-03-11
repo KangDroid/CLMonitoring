@@ -1,6 +1,7 @@
 var fileinputval;
 var boolean;
 var updateAuto;
+var chartupdateTime;
 /*
 function changeUpdateRate() {
     var updateVal = document.getElementById("update_interval");
@@ -53,7 +54,9 @@ function changeUpdateRate() {
 function everyFive() {
     // First update;
     loadUpdate();
+    updateChart();
     updateAuto = setInterval(loadUpdate, 5000);
+    chartupdateTime = setInterval(updateChart, 10000);
 }
 function loadUpdate() {
     updateOverallLoad();
@@ -180,6 +183,7 @@ function updateSimpleInfo() {
     }
     getText(callbackFunction);
 }*/
+
 
 /**
  * Parse data from Node's Server, show it to HTML!
