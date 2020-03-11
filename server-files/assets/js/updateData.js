@@ -51,18 +51,23 @@ function changeUpdateRate() {
 /**
  * Update each data when first page load
  */
+
+function updateChartData() {
+    updateTemperatureGraph();
+    updateChart();
+}
+
 function everyFive() {
     // First update;
     loadUpdate();
-    updateChart();
+    updateChartData();
     updateAuto = setInterval(loadUpdate, 5000);
-    chartupdateTime = setInterval(updateChart, 10000);
+    chartupdateTime = setInterval(updateChartData, 10000);
 }
 function loadUpdate() {
     updateOverallLoad();
     updateDiskUsage();
     updateUptime();
-    //updateDetailedNode();
 }
 
 function updateDiskUsage() {
@@ -95,11 +100,12 @@ function updateUptime() {
 
 function updateOverallLoad() {
     var callbackF = function() {
-        var test = fileinputval[5].split(" ");
+        var test = parseFloat(fileinputval[5]).toFixed(2);
+        //console.log(typedef test);
         var overall_load = document.getElementById("overall_percentage");
         var percentage_bg = document.getElementById("progressbar_overall_load");
-        percentage_bg.style.width= parseInt(test[0] * 100) + "%";
-        overall_load.innerHTML = parseInt(test[0] * 100) + "%";
+        percentage_bg.style.width= test + "%";
+        overall_load.innerHTML = test + "%";
     };
     getText(callbackF);
 }

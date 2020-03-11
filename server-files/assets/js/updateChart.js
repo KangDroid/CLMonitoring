@@ -1,8 +1,18 @@
 var counter = 0;
+function updateTemperatureGraph() {
+    var callbackTemp = function() {
+        var temp = parseFloat(fileinputval[4]).toFixed(2);
+        var x = document.getElementById("temperature_graph");
+        let chart = x.querySelector('canvas').chart;
+        var today = new Date();
+        var label_time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        addData(chart, label_time, temp);
+    }
+    getText(callbackTemp);
+}
 function updateChart() {
     var callbackLoad = function() {
-        var test = fileinputval[5].split(" ");
-        var percentage = parseInt(test[0] * 100);
+        var percentage = parseFloat(fileinputval[5]).toFixed(2);
         let chart = document.querySelector('canvas').chart;
         var today = new Date();
         var label_time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
