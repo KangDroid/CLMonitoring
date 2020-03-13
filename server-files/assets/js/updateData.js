@@ -11,6 +11,8 @@ var disk_usage_info = 3;
 var uptime_info = 4;
 // File Structure Information END
 
+var ip_addr = "192.168.0.19";
+
 /*
 function changeUpdateRate() {
     var updateVal = document.getElementById("update_interval");
@@ -209,7 +211,7 @@ function updateSimpleInfo() {
  */
 function getText(callBack) {
     var txtFile = new XMLHttpRequest();
-    txtFile.open("GET", "http://192.168.0.19/cpu_log", true);
+    txtFile.open("GET", "http://" + ip_addr +"/cpu_log", true);
     txtFile.onreadystatechange = function() {
         if (txtFile.readyState === 4) {  // Makes sure the document is ready to parse.
             if (txtFile.status === 200) {  // Makes sure it's found the file.

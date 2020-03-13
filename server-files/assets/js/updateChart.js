@@ -2,14 +2,8 @@ var counter = 0;
 
 var frequencyChart;
 
-function initFrequencyGraph() {
-    Chart.defaults.global.legend.display = false;
-    var chart = document.getElementById("frequency_graph");
-    var ctx = chart.getContext('2d');
-    // Global Options:
-    var data = {
-      labels: [],
-      datasets: [{
+function getData() {
+    return {
           fill: false,
           lineTension: 0.1,
           backgroundColor: "rgba(225,0,0,0.4)",
@@ -30,91 +24,46 @@ function initFrequencyGraph() {
           // notice the gap in the data and the spanGaps: true
           data: [],
           spanGaps: true,
-        }, {
-          fill: false,
-          lineTension: 0.1,
-          backgroundColor: "rgba(167,105,0,0.4)",
-          borderColor: "rgb(167, 105, 0)",
-          borderCapStyle: 'butt',
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: 'miter',
-          pointBorderColor: "white",
-          pointBackgroundColor: "black",
-          pointBorderWidth: 1,
-          pointHoverRadius: 8,
-          pointHoverBackgroundColor: "brown",
-          pointHoverBorderColor: "yellow",
-          pointHoverBorderWidth: 2,
-          pointRadius: 4,
-          pointHitRadius: 10,
-          // notice the gap in the data and the spanGaps: false
-          data: [],
-          spanGaps: false,
-        }, {
-          fill: false,
-          lineTension: 0.1,
-          backgroundColor: "rgba(167,105,0,0.4)",
-          borderColor: "rgb(167, 105, 0)",
-          borderCapStyle: 'butt',
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: 'miter',
-          pointBorderColor: "white",
-          pointBackgroundColor: "black",
-          pointBorderWidth: 1,
-          pointHoverRadius: 8,
-          pointHoverBackgroundColor: "brown",
-          pointHoverBorderColor: "yellow",
-          pointHoverBorderWidth: 2,
-          pointRadius: 4,
-          pointHitRadius: 10,
-          // notice the gap in the data and the spanGaps: false
-          data: [],
-          spanGaps: false,
-        }, {
-          fill: false,
-          lineTension: 0.1,
-          backgroundColor: "rgba(167,105,0,0.4)",
-          borderColor: "rgb(167, 105, 0)",
-          borderCapStyle: 'butt',
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: 'miter',
-          pointBorderColor: "white",
-          pointBackgroundColor: "black",
-          pointBorderWidth: 1,
-          pointHoverRadius: 8,
-          pointHoverBackgroundColor: "brown",
-          pointHoverBorderColor: "yellow",
-          pointHoverBorderWidth: 2,
-          pointRadius: 4,
-          pointHitRadius: 10,
-          // notice the gap in the data and the spanGaps: false
-          data: [],
-          spanGaps: false,
+        };
+}
+
+function initFrequencyGraph() {
+    var callbackInitFG = function() {
+        Chart.defaults.global.legend.display = false;
+        var chart = document.getElementById("frequency_graph");
+        var ctx = chart.getContext('2d');
+        // Global Options:
+        var data = {
+          labels: [],
+          datasets: []
+        };
+        
+        var arrayCPUFreq = fileinputval[cpu_frequency_array_info].split(" ");
+        
+        for (var i = 0; i < arrayCPUFreq.length; i++) {
+            data.datasets[i] = getData();
         }
-      ]
-    };
 
-    // Notice the scaleLabel at the same level as Ticks
-    var options = {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        } 
-    };
+        // Notice the scaleLabel at the same level as Ticks
+        var options = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            } 
+        };
 
-    // Chart declaration:
-    frequencyChart = new Chart(ctx, {
-      type: 'line',
-      data: data,
-      options: options
-    });
-    frequencyChart.update();
+        // Chart declaration:
+        frequencyChart = new Chart(ctx, {
+          type: 'line',
+          data: data,
+          options: options
+        });
+        frequencyChart.update();
+    }
+    getText(callbackInitFG);
 }
 
 function updateFrequencyGraph() {
