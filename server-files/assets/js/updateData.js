@@ -74,7 +74,7 @@ function loadUpdate() {
 
 function updateDiskUsage() {
     var callbackDU = function() {
-        var percentage_disk = parseInt(fileinputval[6]);
+        var percentage_disk = parseInt(fileinputval[3]);
         var document_disk = document.getElementById("overall_disk_usage");
         var document_pgbar = document.getElementById("overall_disk_usage_pgbar");
         document_disk.innerHTML = percentage_disk + "%";
@@ -85,7 +85,7 @@ function updateDiskUsage() {
 
 function updateUptime() {
     var callbackUptime = function() {
-        var uptime_realval = parseInt(fileinputval[7]); // This is seconds
+        var uptime_realval = parseInt(fileinputval[4]); // This is seconds
         var uptime_day = parseInt(uptime_realval / (3600 * 24)); uptime_realval = uptime_realval % (3600 * 24);
         var uptime_hour = parseInt(uptime_realval/3600); uptime_realval = uptime_realval % 3600; 
         var uptime_min = parseInt(uptime_realval / 60); uptime_realval = uptime_realval % 60;
@@ -95,14 +95,14 @@ function updateUptime() {
         
         // Total Charge
         var charge_doc = document.getElementById("total_charges");
-        charge_doc.innerHTML = "$" + ((parseInt(fileinputval[7]) * 0.001)).toFixed(2);
+        charge_doc.innerHTML = "$" + ((parseInt(fileinputval[4]) * 0.001)).toFixed(2);
     };
     getText(callbackUptime);
 }
 
 function updateOverallLoad() {
     var callbackF = function() {
-        var test = parseFloat(fileinputval[5]).toFixed(2);
+        var test = parseFloat(fileinputval[2]).toFixed(2);
         //console.log(typedef test);
         var overall_load = document.getElementById("overall_percentage");
         var percentage_bg = document.getElementById("progressbar_overall_load");
@@ -125,7 +125,7 @@ function fetchData(string_what) {
     switch(string_what) {
         case "total_limit":
             var callbackUptime = function() {
-                var uptime_realval = parseInt(fileinputval[7]); // This is seconds
+                var uptime_realval = parseInt(fileinputval[4]); // This is seconds
                 var retval = (uptime_realval * 0.001).toFixed(2);
                 var limit = 1000.00;
                 var percentage = parseInt((retval/limit) * 100);
@@ -136,8 +136,9 @@ function fetchData(string_what) {
         break;
         case "load_percentage":
             var callbackSimpleLoad = function() {
-                var test = fileinputval[5].split(" ");
-                var percentage = parseInt(test[0] * 100);
+                var test = parseFloat(fileinputval[2]);
+                console.log(test);
+                var percentage = test.toFixed(2);
                 document.getElementById("simple_load_percentage").innerHTML = percentage + "%";
                 document.getElementById("simple_load_pgbar").style.width = percentage + "%";
             };
@@ -145,7 +146,7 @@ function fetchData(string_what) {
         break;
         case "disk_percentage":
             var callbackSimpleDisk = function() {
-                var percentage_disk = parseInt(fileinputval[6]);
+                var percentage_disk = parseInt(fileinputval[3]);
                 document.getElementById("simple_disk_percentage").innerHTML = percentage_disk + "%";
                 document.getElementById("simple_disk_pgbar").style.width = percentage_disk + "%";
             };

@@ -119,17 +119,18 @@ function initFrequencyGraph() {
 
 function updateFrequencyGraph() {
     var callbackFM = function() {
+        var arrayCPUFreq = fileinputval[0].split(" ");
         var today = new Date();
         var label_time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         frequencyChart.data.labels.push(label_time);
         if (counter > 21) {
             frequencyChart.data.labels.shift();
         }
-        for (var i = 0; i < 4; i++) {
+        for (var i = 0; i < arrayCPUFreq.length; i++) {
             if (counter > 21) {
                 frequencyChart.data.datasets[i].data.shift();
             }
-            var temp_freq = parseFloat(fileinputval[i]).toFixed(1);
+            var temp_freq = parseFloat(arrayCPUFreq[i]).toFixed(1);
             frequencyChart.data.datasets[i].data.push(temp_freq);
         }
         counter++;
@@ -140,7 +141,7 @@ function updateFrequencyGraph() {
 
 function updateTemperatureGraph() {
     var callbackTemp = function() {
-        var temp = parseFloat(fileinputval[4]).toFixed(2);
+        var temp = parseFloat(fileinputval[1]).toFixed(2);
         var x = document.getElementById("temperature_graph");
         let chart = x.querySelector('canvas').chart;
         var today = new Date();
@@ -151,7 +152,7 @@ function updateTemperatureGraph() {
 }
 function updateChart() {
     var callbackLoad = function() {
-        var percentage = parseFloat(fileinputval[5]).toFixed(2);
+        var percentage = parseFloat(fileinputval[2]).toFixed(2);
         let chart = document.querySelector('canvas').chart;
         var today = new Date();
         var label_time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
