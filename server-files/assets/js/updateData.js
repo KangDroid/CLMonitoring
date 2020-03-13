@@ -54,11 +54,13 @@ function changeUpdateRate() {
 
 function updateChartData() {
     updateTemperatureGraph();
+    updateFrequencyGraph();
     updateChart();
 }
 
 function everyFive() {
     // First update;
+    initFrequencyGraph(); // only once;
     loadUpdate();
     updateChartData();
     updateAuto = setInterval(loadUpdate, 5000);
